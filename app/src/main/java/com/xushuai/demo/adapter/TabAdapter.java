@@ -5,6 +5,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
 import com.xushuai.demo.fragment.Fragment1;
+import com.xushuai.demo.fragment.Fragment2;
+import com.xushuai.demo.fragment.Fragment3;
+import com.xushuai.demo.fragment.Fragment4;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,13 +33,13 @@ public class TabAdapter extends FragmentPagerAdapter {
                 Fragment1 f1 = new Fragment1();
                 return f1;
             case 1:
-                Fragment1 f2 = new Fragment1();
+                Fragment2 f2 = new Fragment2();
                 return f2;
             case 2:
-                Fragment1 f3 = new Fragment1();
+                Fragment3 f3 = new Fragment3();
                 return f3;
             case 3:
-                Fragment1 f4 = new Fragment1();
+                Fragment4 f4 = new Fragment4();
                 return f4;
         }
         return null;
