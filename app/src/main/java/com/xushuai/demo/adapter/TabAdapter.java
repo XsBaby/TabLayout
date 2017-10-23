@@ -1,62 +1,63 @@
 package com.xushuai.demo.adapter;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
-import com.xushuai.demo.fragment.Fragment1;
-import com.xushuai.demo.fragment.Fragment2;
-import com.xushuai.demo.fragment.Fragment3;
-import com.xushuai.demo.fragment.Fragment4;
+import com.xushuai.demo.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * date:2017/9/25
- * author:徐帅(acer)
+ * author:acer
  * funcation:TabLayout的适配器
  */
 
 public class TabAdapter extends FragmentPagerAdapter {
 
-    private List<String> title;
+    private Context mContext;
+    private List<Fragment> mFragment;
+    private String[] mName = {"首页", "联系人", "动态"};
+    private int[] mRes = {R.drawable.home_bg, R.drawable.person_bg, R.drawable.userself_bg};
 
-    public TabAdapter(FragmentManager fm) {
+    public TabAdapter(FragmentManager fm, List<Fragment> fragment, Context context) {
         super(fm);
+        this.mFragment = fragment;
+        this.mContext = context;
+    }
+
+    public View getView(int position) {
+        View v = LayoutInflater.from(mContext).inflate(R.layout.item, null);
+        TextView name = (TextView) v.findViewById(R.id.name);
+        ImageView img = (ImageView) v.findViewById(R.id.img);
+        name.setText(mName[position]);
+        img.setImageResource(mRes[position]);
+        return v;
     }
 
     @Override
     public Fragment getItem(int position) {
-        switch (position) {
-            case 0:
-                Fragment1 f1 = new Fragment1();
-                return f1;
-            case 1:
-                Fragment2 f2 = new Fragment2();
-                return f2;
-            case 2:
-                Fragment3 f3 = new Fragment3();
-                return f3;
-            case 3:
-                Fragment4 f4 = new Fragment4();
-                return f4;
-        }
-        return null;
+        return mFragment.get(position);
     }
 
     @Override
     public int getCount() {
-        return 4;
+        return mName.length;
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        title = new ArrayList<>();
-        title.add("最新日报");
-        title.add("专栏");
-        title.add("热门");
-        title.add("主题日报");
-        return title.get(position);
+        return mName[position];
+    }
+
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
     }
 }

@@ -11,7 +11,7 @@ import com.xushuai.demo.R;
 
 /**
  * date:2017/9/25
- * author:徐帅(acer)
+ * author:acer
  * funcation:第一个Fragment
  */
 
